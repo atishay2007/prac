@@ -1,0 +1,151 @@
+# Git Cheatsheet
+
+### Initializing a Repository
+git init
+
+### Staging Files
+git add file1.js                 # Stage a single file
+git add file1.js file2.js        # Stage multiple files
+git add *.js                     # Stage files by pattern
+git add .                        # Stage current directory and all content
+
+### Viewing Status
+git status                       # Full status
+git status -s                     # Short status
+
+### Committing
+git commit -m "Message"          # Commit with a one-line message
+git commit                        # Opens editor for long message
+git commit -am "Message"         # Skip staging, commit changes directly
+
+### Removing Files
+git rm file1.js                   # Remove from working directory and staging
+git rm --cached file1.js          # Remove from staging only
+
+### Renaming or Moving Files
+git mv file1.js file1.txt
+
+### Viewing Changes
+git diff                           # Unstaged changes
+git diff --staged                  # Staged changes
+git diff --cached                  # Same as above
+
+### Viewing History
+git log                            # Full history
+git log --oneline                  # Summary
+git log --reverse                  # Oldest to newest
+
+### Viewing a Commit
+git show 921a2ff                   # Specific commit
+git show HEAD                       # Last commit
+git show HEAD~2                     # Two commits before last
+git show HEAD:file.js               # Version of file.js in last commit
+
+### Unstaging / Discarding Changes
+git restore --staged file.js       # Unstage a file
+git restore file.js                # Discard local changes
+git restore file1.js file2.js      # Discard multiple files
+git restore .                      # Discard all local changes (except untracked)
+git clean -fd                      # Remove untracked files
+git restore --source=HEAD~2 file.js # Restore earlier version of file
+
+### Browsing History
+git log --stat                      # List of modified files
+git log --patch                     # Show patches
+git log -3                          # Last 3 commits
+git log --author="Mosh"             # Filter by author
+git log --before="2020-08-17"       # Filter by date
+git log --after="one week ago"      # Filter by date
+git log --grep="GUI"                # Filter by message
+git log -S"GUI"                     # Filter by changes in patch
+git log hash1..hash2                # Range of commits
+git log file.txt                     # Commits affecting a file
+git log --pretty=format:"%an committed %H" # Custom formatting
+
+### Creating Aliases
+git config --global alias.lg "log --oneline"
+
+### Comparing Commits
+git diff HEAD~2 HEAD               # Changes between commits
+git diff HEAD~2 HEAD file.txt      # Changes to a specific file
+
+### Checking Out Commits
+git checkout dad47ed                # Checkout a commit
+git checkout master                 # Switch branch
+git switch bugfix                   # Switch branch
+git switch -C bugfix                # Create and switch
+
+### Finding a Bad Commit
+git bisect start
+git bisect bad                      # Mark bad commit
+git bisect good ca49180             # Mark good commit
+git bisect reset                    # End bisect session
+
+### Finding Contributors
+git shortlog
+
+### Viewing File History
+git log file.txt
+git log --stat file.txt
+git log --patch file.txt
+git blame file.txt                  # Author of each line
+
+### Tagging
+git tag v1.0
+git tag v1.0 5e7a828                # Tag an earlier commit
+git tag                              # List all tags
+git tag -d v1.0                      # Delete tag
+
+### Branching & Merging
+git branch bugfix                    # Create branch
+git checkout bugfix                  # Switch to branch
+git branch -d bugfix                 # Delete branch
+git log master..bugfix               # Commits in bugfix not in master
+git diff master..bugfix              # Changes in branch
+
+### Stashing
+git stash push -m "New tax rules"   # Create stash
+git stash list                       # List stashes
+git stash show 1                     # Show a stash
+git stash apply 1                    # Apply a stash
+git stash drop 1                     # Delete a stash
+git stash clear                      # Delete all stashes
+
+### Merging
+git merge bugfix
+git merge --no-ff bugfix
+git merge --squash bugfix
+git merge --abort
+
+### Rebasing
+git rebase master
+
+### Cherry-Picking
+git cherry-pick dad47ed
+
+### Collaboration
+git clone url
+git fetch origin
+git pull
+git push
+git push origin v1.0
+git push origin --delete v1.0
+git branch -r
+git branch -vv
+git push -u origin bugfix
+git push -d origin bugfix
+git remote
+git remote add upstream url
+git remote rm upstream
+
+### Rewriting History
+git reset --soft HEAD^
+git reset --mixed HEAD^
+git reset --hard HEAD^
+git revert 72856ea
+git revert HEAD~3..
+git revert --no-commit HEAD~3..
+git reflog
+git reflog show bugfix
+git commit --amend
+git rebase -i HEAD~5
