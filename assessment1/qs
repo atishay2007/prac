@@ -1,0 +1,28 @@
+Q9. Majority Element
+Check if an element occurs more than n/2 times in a list.
+
+Q10. String/Number Rotation & Unique Elements
+
+Rotate a string or number.
+
+Print unique words/elements using set() or fromkeys().
+
+Q11. Valid Numbers in Range
+Print numbers in a given range that satisfy:
+
+No digit = 0
+
+Divisible by each digit
+
+Sum of digits divisible by 2
+
+Reversed number divisible by 3
+
+Q12. Transaction Analysis
+Given an array of transactions:
+a) Find pairs with target sum.
+b) Find pair with maximum product.
+c) Sum of even transactions.
+
+Q13. Longest Consecutive Subsequence
+Given an array, find the longest consecutive subsequence of integers and return as a tuple.
